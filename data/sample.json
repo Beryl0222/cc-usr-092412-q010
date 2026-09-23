@@ -1,0 +1,9 @@
+{
+  "event_id": "sample-015-001",
+  "event_type": "FORMULA_FROZEN",
+  "aggregate_type": "ingredient_lot",
+  "aggregate_id": "pulse_texture_lab-001",
+  "occurred_at": "2026-09-20T18:00:00+08:00",
+  "version": 1,
+  "summary": "登记豆类结构食品试验库的首条领域记录"
+}
