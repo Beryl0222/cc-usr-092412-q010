@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "领域事件基础校验",
+  "description": "豆类质构试验盲样谱系与复现实验流程",
   "scripts": {
     "test": "node --test",
-    "build": "node --experimental-strip-types --check src/domain.ts && node --check src/validator.js"
+    "build": "node --experimental-strip-types --check src/domain.ts && for f in src/*.js; do node --check \"$f\" || exit 1; done"
   }
 }

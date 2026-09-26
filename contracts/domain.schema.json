@@ -20,18 +20,45 @@
       "type": "string",
       "enum": [
         "FORMULA_FROZEN",
-        "RUN_STARTED",
-        "MEASUREMENT_INGESTED",
         "PANEL_COMPLETED",
-        "SCALEUP_REVIEWED"
+        "SCALEUP_REVIEWED",
+        "LOT_REGISTERED",
+        "PRETREATMENT_APPLIED",
+        "SAMPLE_SPLIT",
+        "SAMPLE_MERGED",
+        "BLIND_CODE_ISSUED",
+        "STUDY_UNBLINDED",
+        "CALIBRATION_RECORDED",
+        "CALIBRATION_INVALIDATED",
+        "RUN_STARTED",
+        "RUN_COMPLETED",
+        "RUN_FAILED",
+        "MEASUREMENT_INGESTED",
+        "EXCLUSION_REQUESTED",
+        "EXCLUSION_CONFIRMED",
+        "EXCLUSION_REJECTED",
+        "BATCH_OPENED",
+        "BATCH_CHECKPOINT",
+        "BATCH_RESUMED",
+        "INVESTIGATION_OPENED",
+        "INVESTIGATION_RESOLVED",
+        "REPORT_CREATED",
+        "REPORT_SIGNED",
+        "REPORT_ADDENDUM"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
         "ingredient_lot",
+        "sample",
+        "study",
+        "instrument",
         "experiment_run",
         "measurement_series",
+        "batch_session",
+        "investigation",
+        "report",
         "scaleup_trial"
       ]
     },
@@ -48,6 +75,21 @@
       "minimum": 1
     },
     "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actor": {
+      "type": "object",
+      "required": ["id", "role"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "role": { "type": "string", "minLength": 1 }
+      }
+    },
+    "payload": {
+      "type": "object"
+    },
+    "supersedes": {
       "type": "string",
       "minLength": 1
     }
