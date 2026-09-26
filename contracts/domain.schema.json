@@ -20,8 +20,34 @@
       "type": "string",
       "enum": [
         "FORMULA_FROZEN",
+        "LOT_REGISTERED",
+        "PRETREATMENT_RECORDED",
+        "SAMPLE_SPLIT",
+        "SAMPLES_MERGED",
+        "PARAMS_REGISTERED",
+        "BLIND_CODES_GENERATED",
+        "BLIND_MAPPING_SEALED",
+        "BLIND_CODE_ASSIGNED",
+        "UNBLINDED",
+        "CALIBRATION_REGISTERED",
+        "CALIBRATION_INVALIDATED",
         "RUN_STARTED",
+        "RUN_COMPLETED",
+        "RUN_FROZEN",
+        "RUN_REQUALIFIED",
+        "CURVE_ATTACHED",
         "MEASUREMENT_INGESTED",
+        "MEASUREMENT_RECORDED",
+        "EXCLUSION_REQUESTED",
+        "EXCLUSION_CONFIRMED",
+        "EXCLUSION_REJECTED",
+        "REPORT_CREATED",
+        "REPORT_SIGNED",
+        "INGESTION_BATCH_STARTED",
+        "INGESTION_CHECKPOINT",
+        "INGESTION_BATCH_COMPLETED",
+        "INVESTIGATION_OPENED",
+        "INVESTIGATION_RESOLVED",
         "PANEL_COMPLETED",
         "SCALEUP_REVIEWED"
       ]
@@ -30,8 +56,18 @@
       "type": "string",
       "enum": [
         "ingredient_lot",
-        "experiment_run",
+        "pretreatment_batch",
+        "sample",
+        "parameter_set",
+        "instrument_run",
+        "curve_file",
+        "calibration_record",
+        "study",
+        "measurement",
         "measurement_series",
+        "report",
+        "ingestion_batch",
+        "investigation",
         "scaleup_trial"
       ]
     },
@@ -50,6 +86,34 @@
     "summary": {
       "type": "string",
       "minLength": 1
+    },
+    "actor": {
+      "type": ["object", "null"],
+      "required": ["id", "role"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "role": {
+          "type": "string",
+          "enum": ["formulator", "blind_admin", "analyst", "operator", "qa", "reviewer"]
+        }
+      },
+      "additionalProperties": true
+    },
+    "sealed": {
+      "type": "boolean",
+      "description": "封存事件：解盲前正文仅对盲码管理员可见"
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "prev_hash": {
+      "type": "string",
+      "description": "前序事件哈希，构成防篡改链"
+    },
+    "hash": {
+      "type": "string",
+      "description": "本事件内容与前序哈希的 SHA-256 摘要"
     }
   },
   "additionalProperties": true
